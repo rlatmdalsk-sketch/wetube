@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+    /* Background */
+    --bg-default: #FFFFFF;
+    --bg-paper: #FFFFFF;
+
+    /* Text */
+    --text-default: #0F0F0F;
+    --text-disabled: #606060;
+
+    /* Divider */
+    --divider: #E5E5E5;
+}
+
+/* 다크 모드 (html class="dark" 일 때 적용) */
+.dark {
+    /* Background (Youtube Dark) */
+    --bg-default: #0F0F0F;
+    --bg-paper: #0F0F0F;
+
+    /* Text */
+    --text-default: #F1F1F1;
+    --text-disabled: #AAAAAA;
+
+    /* Divider */
+    --divider: #3F3F3F;
+}
+
+/* 2. Tailwind v4 테마 설정 (@theme) */
+/* 여기서 정의한 변수들은 자동으로 bg-..., text-..., border-... 클래스로 생성됩니다. */
+@theme {
+    /* 사용법:
+       bg-background-default
+       text-primary-main
+       border-divider
+    */
+
+    /* --- 가변 색상 (다크모드 대응) --- */
+    --color-background-default: var(--bg-default);
+    --color-background-paper: var(--bg-paper);
+
+    --color-text-default: var(--text-default);
+    --color-text-disabled: var(--text-disabled);
+
+    --color-divider: var(--divider);
+
+    /* --- 고정 색상 (Static Palette) --- */
+    /* Primary (Youtube Red) */
+    --color-primary-main: #FF0000;
+    --color-primary-light: #FF4D4D;
+    --color-primary-dark: #CC0000;
+    --color-primary-contrastText: #FFFFFF;
+
+    /* Secondary (Youtube Blue) */
+    --color-secondary-main: #065FD4;
+    --color-secondary-light: #3EA6FF;
+    --color-secondary-dark: #003399;
+    --color-secondary-contrastText: #FFFFFF;
+
+    /* Success */
+    --color-success-main: #2BA640;
+    --color-success-light: #4CAF50;
+    --color-success-dark: #1B5E20;
+    --color-success-contrastText: #FFFFFF;
+
+    /* Error */
+    --color-error-main: #D93025;
+    --color-error-light: #EF5350;
+    --color-error-dark: #C62828;
+    --color-error-contrastText: #FFFFFF;
+
+    /* Info */
+    --color-info-main: #0288D1;
+    --color-info-light: #03A9F4;
+    --color-info-dark: #01579B;
+    --color-info-contrastText: #FFFFFF;
+
+    /* Warning */
+    --color-warning-main: #ED6C02;
+    --color-warning-light: #FF9800;
+    --color-warning-dark: #E65100;
+    --color-warning-contrastText: #FFFFFF;
+}
+
+@layer base {
+    body {
+        background-color: var(--bg-default);
+        color: var(--text-default);
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ✨ 핵심: 모든 요소의 기본 테두리 색상을 우리가 만든 divider 변수로 설정 */
+    *, ::after, ::before {
+        border-color: var(--divider);
+        border-style: solid; /* v4에서 가끔 border-style이 누락될 때 대비 */
+    }
+}
+
+/* 스크롤바 커스텀 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #717171;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #A0A0A0;
+}
