@@ -125,7 +125,7 @@ function SignUp() {
         try {
             await api.post("/auth/signup", data);
             alert("회원가입이 완료되었습니다! 로그인해주세요.");
-            navigate("/login");
+            navigate("/sign-in");
         } catch (error) {
             const axiosError = error as AxiosError<{ message: string }>;
             const msg = axiosError.response?.data?.message || "회원가입 실패";
